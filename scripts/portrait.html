@@ -1,0 +1,76 @@
+<!doctype html>
+<!--
+  Renders a 4:5 studio portrait of the walking man for the About panel.
+  With `npm run dev` running:  npm run portrait   (→ assets/portrait.webp)
+  To use a real photo instead, just drop it in assets/ and point
+  site.about.portrait in src/config.js at it.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Portrait</title>
+<style>
+  html, body { margin: 0; width: 1440px; height: 900px; overflow: hidden; background: #0b0a09; }
+  .frame { position: absolute; left: 0; top: 0; width: 720px; height: 900px;
+    background: radial-gradient(70% 55% at 55% 38%, #4a3b2c 0%, #231c15 45%, #0e0c0a 100%); }
+  canvas { position: absolute; left: 0; top: 0; }
+</style>
+<script type="importmap">{ "imports": { "three": "/vendor/three.module.min.js", "three/addons/": "/vendor/jsm/" } }</script>
+</head>
+<body>
+<div class="frame"></div>
+<script type="module">
+  import * as THREE from 'three';
+  import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+  import { dressModel, clipsFromJson } from '/src/walker.js';
+
+  const W = 720, H = 900;
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(1);
+  renderer.setSize(W, H);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  document.body.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(24, W / H, 0.1, 50);
+
+  scene.add(new THREE.HemisphereLight(0xffeedd, 0x2a2018, 1.2));
+  const key = new THREE.DirectionalLight(0xffe0bd, 3.2);
+  key.position.set(-1.6, 2.6, 2.4);
+  const rim = new THREE.DirectionalLight(0xcfe0ff, 2.2);
+  rim.position.set(1.8, 2.2, -1.8);
+  const fill = new THREE.DirectionalLight(0xffd6a8, 0.6);
+  fill.position.set(2, 1, 2);
+  scene.add(key, rim, fill);
+
+  const [gltf, anims] = await Promise.all([
+    new GLTFLoader().loadAsync('/models/man.glb'),
+    fetch('/models/walk-anims.json').then((r) => r.json()),
+  ]);
+  const model = gltf.scene;
+  dressModel(model);
+  scene.add(model);
+
+  // relaxed idle stance
+  const mixer = new THREE.AnimationMixer(model);
+  const idle = clipsFromJson(anims).find((c) => c.name === 'Idle');
+  mixer.clipAction(idle).play();
+  mixer.setTime(0.9);
+  model.updateMatrixWorld(true);
+
+  // frame head and shoulders, turned a little towards the light
+  let head = null;
+  model.traverse((o) => { if (!head && o.isBone && /^Head$/.test(o.name)) head = o; });
+  const h = new THREE.Vector3();
+  head.getWorldPosition(h);
+  const face = new THREE.Vector3(0, 0, 1); // the avatar faces +z
+  const side = new THREE.Vector3(-0.45, 0, 0);
+  camera.position.copy(h).add(face.multiplyScalar(2.5)).add(side).add(new THREE.Vector3(0, -0.05, 0));
+  camera.lookAt(h.x, h.y - 0.2, h.z);
+
+  renderer.render(scene, camera);
+  document.body.dataset.ready = '1';
+</script>
+</body>
+</html>

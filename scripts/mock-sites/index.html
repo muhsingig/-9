@@ -1,0 +1,284 @@
+<!doctype html>
+<!--
+  Twelve fictional client websites, drawn with HTML/CSS/SVG only, used as the
+  demo cards on the wall. Open ?site=<id> at 1440x900 to see one;
+  `npm run mocks` screenshots them all into raw-shots/.
+  Every brand here is invented for the template.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Mock site</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Serif+Display:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1440px; height: 900px; overflow: hidden; }
+  body { font-family: 'Inter Tight', sans-serif; -webkit-font-smoothing: antialiased; }
+  .page { position: relative; width: 1440px; height: 900px; overflow: hidden; }
+  nav { position: absolute; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; padding: 34px 64px; z-index: 5; }
+  nav .links { display: flex; gap: 36px; font-size: 15px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 26px; border-radius: 999px; font-size: 15px; font-weight: 600; }
+  .small { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; }
+  svg { display: block; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const SITES = {
+  /* 1. Skincare — soft blush, serif, product bottle */
+  velvetine: () => `
+  <div class="page" style="background:#f4e7e1;color:#3b2a26">
+    <nav><div style="font-family:'Fraunces';font-size:30px;font-weight:600;letter-spacing:-.02em">velvetine</div>
+      <div class="links"><span>Serums</span><span>Rituals</span><span>Ingredients</span><span>Journal</span></div>
+      <div class="btn" style="background:#3b2a26;color:#f4e7e1;padding:12px 22px">Bag (2)</div></nav>
+    <div style="position:absolute;left:64px;top:230px;width:640px">
+      <div class="small" style="color:#a0675a">New · Barrier Repair Serum</div>
+      <h1 style="font-family:'Fraunces';font-weight:300;font-size:104px;line-height:.95;letter-spacing:-.03em;margin-top:22px">Skin that <i>feels</i> like yours again.</h1>
+      <p style="font-size:19px;line-height:1.55;margin-top:28px;max-width:470px;color:#6d5650">Ceramides, oat and a little patience. Fourteen days to a calmer, stronger barrier.</p>
+      <div style="display:flex;gap:14px;margin-top:38px"><div class="btn" style="background:#3b2a26;color:#f4e7e1">Shop the serum →</div><div class="btn" style="border:1.5px solid #3b2a26">Take the skin quiz</div></div>
+    </div>
+    <div style="position:absolute;right:-60px;top:110px;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fbd9cf,#e7b4a6 70%)"></div>
+    <svg style="position:absolute;right:250px;top:200px" width="220" height="560" viewBox="0 0 220 560">
+      <rect x="80" y="0" width="60" height="70" rx="10" fill="#3b2a26"/><rect x="92" y="62" width="36" height="40" fill="#c9a48f"/>
+      <rect x="20" y="100" width="180" height="440" rx="34" fill="#fffaf7"/><rect x="20" y="100" width="180" height="440" rx="34" fill="url(#gl)"/>
+      <text x="110" y="300" text-anchor="middle" font-family="Fraunces" font-size="28" fill="#3b2a26">velvetine</text>
+      <text x="110" y="330" text-anchor="middle" font-family="Inter Tight" font-size="11" letter-spacing="3" fill="#a0675a">BARRIER SERUM</text>
+      <defs><linearGradient id="gl" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".15" stop-color="#fff" stop-opacity=".7"/><stop offset=".3" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#e7c9bd" stop-opacity=".5"/></linearGradient></defs>
+    </svg>
+    <div style="position:absolute;left:64px;bottom:48px;display:flex;gap:48px;font-size:14px;color:#6d5650"><span>★ 4.9 · 2,300 reviews</span><span>Fragrance-free</span><span>Dermatologist tested</span></div>
+  </div>`,
+
+  /* 2. Bicycles — forest green, bold grotesk, line-drawn bike */
+  northfield: () => `
+  <div class="page" style="background:#1f3b2d;color:#eef3e2">
+    <nav><div style="font-family:'Archivo Black';font-size:24px;letter-spacing:.02em">NORTHFIELD</div>
+      <div class="links"><span>Gravel</span><span>Road</span><span>City</span><span>Find a dealer</span></div>
+      <div class="btn" style="background:#d8f36a;color:#1f3b2d;padding:12px 22px">Book a test ride</div></nav>
+    <h1 style="position:absolute;left:56px;top:120px;font-family:'Archivo Black';font-size:212px;line-height:.86;letter-spacing:-.04em;color:#d8f36a">RIDE<br>FURTHER.</h1>
+    <svg style="position:absolute;right:40px;bottom:70px" width="760" height="470" viewBox="0 0 760 470" fill="none" stroke="#eef3e2" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="170" cy="330" r="130"/><circle cx="590" cy="330" r="130"/>
+      <circle cx="170" cy="330" r="112" stroke-width="3" opacity=".5"/><circle cx="590" cy="330" r="112" stroke-width="3" opacity=".5"/>
+      <path d="M170 330 L300 140 L520 140 L590 330 M300 140 L380 330 L520 140 M380 330 L170 330 M286 110 L330 110 M520 140 L505 90 L560 80" />
+      <circle cx="380" cy="330" r="22" fill="#d8f36a" stroke="none"/>
+    </svg>
+    <div style="position:absolute;left:64px;bottom:64px;max-width:420px">
+      <p style="font-size:19px;line-height:1.55;opacity:.85">The Trailhead G2. Steel frame, 45mm tyres and enough mounts for a week away.</p>
+      <div style="display:flex;gap:28px;margin-top:26px;font-family:'Space Grotesk';font-size:15px"><span>9.4 kg</span><span>1×12 gearing</span><span>From $2,150</span></div>
+    </div>
+  </div>`,
+
+  /* 3. Seafood restaurant — navy and cream, classic serif */
+  saltmarsh: () => `
+  <div class="page" style="background:#f3eee3;color:#14233d">
+    <nav><div class="links"><span>Menu</span><span>Wine</span><span>Private dining</span></div>
+      <div style="font-family:'DM Serif Display';font-size:34px">Saltmarsh</div>
+      <div class="btn" style="background:#14233d;color:#f3eee3;padding:12px 22px">Reserve a table</div></nav>
+    <div style="position:absolute;left:0;right:0;top:150px;text-align:center">
+      <div class="small" style="color:#9b7b4f">Oyster bar & kitchen · Est. 2019</div>
+      <h1 style="font-family:'DM Serif Display';font-size:150px;line-height:.92;letter-spacing:-.02em;margin-top:20px">From the tide<br><i style="color:#2f5f8a">to the table.</i></h1>
+    </div>
+    <div style="position:absolute;left:0;right:0;bottom:0;height:300px;background:#14233d"></div>
+    <svg style="position:absolute;left:50%;bottom:40px;transform:translateX(-50%)" width="520" height="300" viewBox="0 0 520 300">
+      <ellipse cx="260" cy="190" rx="250" ry="100" fill="#f3eee3"/><ellipse cx="260" cy="180" rx="200" ry="74" fill="#fffdf8"/>
+      <g fill="#c8b48e"><ellipse cx="190" cy="170" rx="58" ry="30"/><ellipse cx="320" cy="165" rx="58" ry="30"/><ellipse cx="255" cy="205" rx="58" ry="28"/></g>
+      <g fill="#e9dfc9"><ellipse cx="190" cy="166" rx="40" ry="18"/><ellipse cx="320" cy="161" rx="40" ry="18"/><ellipse cx="255" cy="201" rx="40" ry="16"/></g>
+      <circle cx="380" cy="215" r="18" fill="#e3c84f"/>
+    </svg>
+    <div style="position:absolute;left:64px;bottom:60px;color:#f3eee3;font-size:15px;line-height:1.7">Tue–Sun · 5pm till late<br>14 Harbour Row</div>
+    <div style="position:absolute;right:64px;bottom:60px;color:#f3eee3;font-size:15px;text-align:right;line-height:1.7">Tonight's catch<br><span style="font-family:'DM Serif Display';font-size:22px">Line-caught bass, brown butter</span></div>
+  </div>`,
+
+  /* 4. Fintech app — dark, gradient glow, phone */
+  orbita: () => `
+  <div class="page" style="background:#07070c;color:#f2f1ff">
+    <div style="position:absolute;left:-200px;top:-260px;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,#5b3cff 0%,transparent 62%);opacity:.55"></div>
+    <div style="position:absolute;right:-240px;bottom:-320px;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,#00d6b4 0%,transparent 60%);opacity:.35"></div>
+    <nav><div style="font-family:'Syne';font-weight:800;font-size:28px">orbita</div>
+      <div class="links" style="opacity:.8"><span>Personal</span><span>Business</span><span>Pricing</span><span>Security</span></div>
+      <div class="btn" style="background:#f2f1ff;color:#07070c;padding:12px 22px">Get the app</div></nav>
+    <div style="position:absolute;left:64px;top:220px;width:660px">
+      <div class="btn" style="padding:8px 16px;font-size:13px;border:1px solid #ffffff30;font-weight:500">● Now in 31 countries</div>
+      <h1 style="font-family:'Syne';font-weight:700;font-size:96px;line-height:.98;letter-spacing:-.035em;margin-top:26px">Money that moves at the speed of you.</h1>
+      <p style="font-size:19px;line-height:1.55;margin-top:26px;max-width:480px;color:#b9b6d6">Spend in any currency, split anything, save on autopilot. No hidden fees, ever.</p>
+      <div style="display:flex;gap:14px;margin-top:36px"><div class="btn" style="background:linear-gradient(90deg,#6f52ff,#00d6b4);color:#fff">Open an account</div><div class="btn" style="border:1px solid #ffffff40">See how it works</div></div>
+    </div>
+    <div style="position:absolute;right:170px;top:120px;width:340px;height:700px;border-radius:52px;background:#14131f;border:10px solid #23222f;box-shadow:0 60px 120px #000a;padding:44px 26px">
+      <div style="font-size:13px;color:#8a87a8">Total balance</div><div style="font-family:'Syne';font-size:44px;font-weight:700;margin-top:6px">$12,480.20</div>
+      <div style="height:130px;margin-top:22px;border-radius:20px;background:linear-gradient(135deg,#6f52ff,#00d6b4);padding:18px;font-size:13px">Orbita Card<br><span style="font-family:'Space Grotesk';font-size:20px;letter-spacing:.1em;display:block;margin-top:44px">•••• 4021</span></div>
+      ${['Coffee · Lisbon|−€3.40','Rent split|+$640.00','Savings pot|+$120.00','Train · Berlin|−€18.90'].map(r=>{const[a,b]=r.split('|');return `<div style="display:flex;justify-content:space-between;padding:16px 4px;border-bottom:1px solid #ffffff12;font-size:15px"><span>${a}</span><span style="color:${b[0]==='+'?'#00d6b4':'#f2f1ff'}">${b}</span></div>`}).join('')}
+    </div>
+  </div>`,
+
+  /* 5. Independent magazine — cream, editorial grid */
+  fieldnotes: () => `
+  <div class="page" style="background:#efe9dc;color:#1c1a17">
+    <nav style="border-bottom:1.5px solid #1c1a17;padding:24px 64px"><span class="small">Issue 12 · Autumn</span>
+      <div style="font-family:'Instrument Serif';font-size:40px;font-style:italic">Fieldnotes</div><span class="small">Subscribe</span></nav>
+    <div style="position:absolute;left:64px;top:140px;width:760px">
+      <div class="small" style="color:#b0442a">Cover story</div>
+      <h1 style="font-family:'Instrument Serif';font-weight:400;font-size:128px;line-height:.9;letter-spacing:-.02em;margin-top:18px">The last lighthouse keepers.</h1>
+      <p style="font-family:'Fraunces';font-size:22px;line-height:1.5;margin-top:28px;max-width:600px;color:#4a453c">Three families, two hundred miles of coast, and a job the world forgot to finish. Words by M. Arden.</p>
+      <div style="display:flex;gap:24px;margin-top:34px;font-size:14px" class="small"><span>18 min read</span><span>Photographs ↓</span></div>
+    </div>
+    <div style="position:absolute;right:64px;top:140px;width:470px;height:600px;background:linear-gradient(180deg,#9fb7c4 0%,#c9d5d6 55%,#57707a 56%,#3b4f58 100%)">
+      <svg style="position:absolute;left:180px;top:120px" width="110" height="300" viewBox="0 0 110 300"><path d="M30 300 L42 40 L68 40 L80 300 Z" fill="#f5f0e6"/><path d="M38 120 L72 120 L74 150 L36 150 Z M34 200 L76 200 L78 230 L32 230 Z" fill="#b0442a"/><rect x="36" y="14" width="38" height="28" fill="#1c1a17"/><path d="M30 14 L55 0 L80 14 Z" fill="#b0442a"/><circle cx="55" cy="28" r="8" fill="#ffe7a1"/></svg>
+    </div>
+    <div style="position:absolute;left:64px;right:64px;bottom:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:40px;border-top:1.5px solid #1c1a17;padding-top:20px">
+      ${['Food|Bread, slowly','Design|Chairs that outlive us','Travel|North by night train'].map(r=>{const[a,b]=r.split('|');return `<div><div class="small" style="color:#b0442a">${a}</div><div style="font-family:'Instrument Serif';font-size:30px;margin-top:6px">${b}</div></div>`}).join('')}
+    </div>
+  </div>`,
+
+  /* 6. Ceramics shop — terracotta, product grid */
+  kiln: () => `
+  <div class="page" style="background:#f6f0e8;color:#2e2119">
+    <nav><div style="font-family:'Fraunces';font-weight:600;font-size:28px">Kiln &amp; Co.</div>
+      <div class="links"><span>Shop all</span><span>Mugs</span><span>Vases</span><span>Studio</span></div><span>Cart (0)</span></nav>
+    <div style="position:absolute;left:64px;top:150px;width:520px">
+      <h1 style="font-family:'Fraunces';font-weight:300;font-size:88px;line-height:.98;letter-spacing:-.03em">Made slowly, by hand, in small batches.</h1>
+      <p style="font-size:18px;line-height:1.6;margin-top:24px;color:#6e5a4c">Stoneware from our studio by the river. Each piece is thrown, trimmed and glazed by one of four potters.</p>
+      <div class="btn" style="background:#b8552f;color:#fff;margin-top:34px">Shop the autumn batch →</div>
+    </div>
+    <div style="position:absolute;right:64px;top:130px;display:grid;grid-template-columns:repeat(3,230px);gap:20px">
+      ${[['#e6d6c3','M70 40 Q70 20 115 20 Q160 20 160 40 L150 160 Q115 175 80 160 Z','#b8552f','Ember Mug','$38'],
+         ['#d7dccf','M95 20 L135 20 Q130 50 160 80 Q175 130 140 170 L90 170 Q55 130 70 80 Q100 50 95 20 Z','#5b6e57','Moss Vase','$64'],
+         ['#efe0d0','M50 70 Q115 40 180 70 Q170 150 115 160 Q60 150 50 70 Z','#c99a6b','Oat Bowl','$42'],
+         ['#e2cdbd','M80 30 L150 30 L160 170 L70 170 Z','#2e2119','Char Tumbler','$34'],
+         ['#dfe3e6','M115 20 Q170 60 160 120 Q150 170 115 172 Q80 170 70 120 Q60 60 115 20 Z','#6f8fa3','Tide Jug','$72'],
+         ['#eadccb','M60 110 Q115 60 170 110 Q165 160 115 165 Q65 160 60 110 Z','#b8552f','Clay Plate','$46']]
+        .map(([bg,d,c,n,p])=>`<div><div style="height:230px;background:${bg};border-radius:6px"><svg width="230" height="230" viewBox="0 0 230 200"><path d="${d}" fill="${c}"/></svg></div><div style="display:flex;justify-content:space-between;margin-top:10px;font-size:14px"><span>${n}</span><span>${p}</span></div></div>`).join('')}
+    </div>
+  </div>`,
+
+  /* 7. AI product — black, neon lime, dashboard */
+  parallax: () => `
+  <div class="page" style="background:#0b0b0b;color:#f4f4f0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:48px 48px">
+    <nav><div style="font-family:'Space Grotesk';font-weight:700;font-size:24px">◢ parallax</div>
+      <div class="links" style="opacity:.75"><span>Product</span><span>Docs</span><span>Changelog</span><span>Pricing</span></div>
+      <div class="btn" style="background:#c6ff3d;color:#0b0b0b;padding:12px 22px">Start free</div></nav>
+    <div style="position:absolute;left:0;right:0;top:150px;text-align:center">
+      <div class="btn" style="padding:8px 16px;font-size:13px;border:1px solid #c6ff3d55;color:#c6ff3d;font-weight:500">Parallax 3.0 — agents that ship →</div>
+      <h1 style="font-family:'Space Grotesk';font-weight:700;font-size:100px;line-height:.98;letter-spacing:-.04em;margin:26px auto 0;max-width:1100px">Your backlog, <span style="color:#c6ff3d">cleared overnight.</span></h1>
+      <p style="font-size:19px;margin-top:22px;color:#a3a39b">Point Parallax at a ticket. Wake up to a tested pull request.</p>
+    </div>
+    <div style="position:absolute;left:220px;right:220px;top:520px;height:420px;border-radius:18px 18px 0 0;background:#151515;border:1px solid #2a2a2a;padding:26px">
+      <div style="display:flex;gap:8px"><i style="width:12px;height:12px;border-radius:50%;background:#ff5f57"></i><i style="width:12px;height:12px;border-radius:50%;background:#febc2e"></i><i style="width:12px;height:12px;border-radius:50%;background:#28c840"></i></div>
+      <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:22px;margin-top:22px">
+        <div style="font-family:'Space Grotesk';font-size:15px;line-height:2;color:#a3a39b">${['✓ Read issue #482 — flaky checkout test','✓ Found race in cart/reserve.ts','✓ Wrote fix + 3 regression tests','<span style="color:#c6ff3d">● Opening pull request…</span>'].join('<br>')}</div>
+        <div style="display:flex;align-items:flex-end;gap:12px;height:220px">${[40,62,48,80,70,95,88].map(h=>`<div style="flex:1;height:${h}%;background:linear-gradient(#c6ff3d,#c6ff3d33);border-radius:4px"></div>`).join('')}</div>
+      </div>
+    </div>
+  </div>`,
+
+  /* 8. Swimwear — aqua, waves, fashion type */
+  mare: () => `
+  <div class="page" style="background:#8fd3cf;color:#0e3d44">
+    <nav><div class="links"><span>Women</span><span>Men</span><span>Lookbook</span></div>
+      <div style="font-family:'Syne';font-weight:800;font-size:34px;letter-spacing:.2em">MARÉ</div><span>Bag (1)</span></nav>
+    <svg style="position:absolute;left:0;top:0" width="1440" height="900" viewBox="0 0 1440 900">
+      <path d="M0 520 Q180 470 360 520 T720 520 T1080 520 T1440 520 V900 H0 Z" fill="#4fb3b5"/>
+      <path d="M0 610 Q180 560 360 610 T720 610 T1080 610 T1440 610 V900 H0 Z" fill="#1f8c95"/>
+      <path d="M0 720 Q180 680 360 720 T720 720 T1080 720 T1440 720 V900 H0 Z" fill="#0e3d44"/>
+      <circle cx="1130" cy="250" r="110" fill="#ffd58a"/>
+    </svg>
+    <h1 style="position:absolute;left:64px;top:170px;font-family:'Syne';font-weight:800;font-size:170px;line-height:.86;letter-spacing:-.04em">Summer<br>Edit '26</h1>
+    <div style="position:absolute;left:64px;bottom:60px;color:#e8fbf9;max-width:420px;font-size:18px;line-height:1.6">Recycled-nylon swimwear, cut for actually swimming. Free returns, always.</div>
+    <div class="btn" style="position:absolute;right:64px;bottom:60px;background:#e8fbf9;color:#0e3d44">Shop the edit →</div>
+  </div>`,
+
+  /* 9. Architecture firm — warm grey, block composition */
+  tessellate: () => `
+  <div class="page" style="background:#e4e1dc;color:#191919">
+    <nav><div style="font-family:'Inter Tight';font-weight:700;font-size:20px;letter-spacing:.3em">TESSELLATE</div>
+      <div class="links"><span>Projects</span><span>Practice</span><span>Writing</span><span>Contact</span></div></nav>
+    <svg style="position:absolute;right:0;top:0" width="860" height="900" viewBox="0 0 860 900">
+      <rect x="120" y="150" width="300" height="620" fill="#c9c4bc"/><rect x="420" y="300" width="300" height="470" fill="#b2aca2"/>
+      <rect x="240" y="420" width="360" height="350" fill="#8f897f"/><rect x="0" y="770" width="860" height="130" fill="#191919"/>
+      ${Array.from({length:6},(_,r)=>Array.from({length:4},(_,c)=>`<rect x="${150+c*66}" y="${190+r*80}" width="38" height="52" fill="#191919" opacity="${(r+c)%3?0.85:0.35}"/>`).join('')).join('')}
+      <rect x="440" y="440" width="140" height="330" fill="#e4e1dc" opacity=".55"/>
+    </svg>
+    <div style="position:absolute;left:64px;top:200px;width:520px">
+      <div class="small">Featured · Harbour Library, 2026</div>
+      <h1 style="font-family:'Inter Tight';font-weight:500;font-size:84px;line-height:.98;letter-spacing:-.04em;margin-top:22px">Buildings that make room for people.</h1>
+      <p style="font-size:18px;line-height:1.6;margin-top:26px;color:#55524d;max-width:440px">An architecture studio working on libraries, schools and housing across three coasts.</p>
+      <div style="margin-top:34px;font-size:15px;border-bottom:1.5px solid #191919;display:inline-block;padding-bottom:4px">View all 48 projects →</div>
+    </div>
+  </div>`,
+
+  /* 10. Tea brand — deep green, gold, tin */
+  bramble: () => `
+  <div class="page" style="background:#16352b;color:#f1e6c8">
+    <nav><div style="font-family:'DM Serif Display';font-size:32px">Bramble <i>Tea</i></div>
+      <div class="links" style="opacity:.85"><span>Loose leaf</span><span>Gifts</span><span>Subscribe</span><span>Our gardens</span></div><span>Basket</span></nav>
+    <div style="position:absolute;left:64px;top:220px;width:600px">
+      <div class="small" style="color:#d4a94e">Single estate · Darjeeling first flush</div>
+      <h1 style="font-family:'DM Serif Display';font-size:112px;line-height:.94;margin-top:22px">A slower cup, <i style="color:#d4a94e">picked in spring.</i></h1>
+      <div style="display:flex;gap:14px;margin-top:40px"><div class="btn" style="background:#d4a94e;color:#16352b">Shop the harvest</div><div class="btn" style="border:1.5px solid #f1e6c880">Brewing guide</div></div>
+    </div>
+    <svg style="position:absolute;right:150px;top:150px" width="460" height="640" viewBox="0 0 460 640">
+      <ellipse cx="230" cy="600" rx="210" ry="30" fill="#0d241c"/>
+      <rect x="70" y="120" width="320" height="470" rx="18" fill="#d4a94e"/><rect x="70" y="120" width="320" height="470" rx="18" fill="url(#tin)"/>
+      <rect x="60" y="90" width="340" height="70" rx="14" fill="#b88b33"/>
+      <rect x="110" y="250" width="240" height="220" fill="#16352b"/>
+      <text x="230" y="330" text-anchor="middle" font-family="DM Serif Display" font-size="40" fill="#f1e6c8">Bramble</text>
+      <text x="230" y="370" text-anchor="middle" font-family="Inter Tight" font-size="13" letter-spacing="4" fill="#d4a94e">FIRST FLUSH</text>
+      <path d="M200 410 Q230 380 260 410 Q230 440 200 410 Z" fill="#7fae6b"/>
+      <defs><linearGradient id="tin" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".25"/><stop offset=".35" stop-color="#fff" stop-opacity=".25"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient></defs>
+    </svg>
+  </div>`,
+
+  /* 11. Electric car — white, red accent, silhouette */
+  volta: () => `
+  <div class="page" style="background:#f5f5f3;color:#111">
+    <nav><div style="font-family:'Syne';font-weight:800;font-size:26px;letter-spacing:.12em">VOLTA</div>
+      <div class="links"><span>Model V</span><span>Model S2</span><span>Charging</span><span>Owners</span></div>
+      <div class="btn" style="background:#111;color:#fff;padding:12px 22px">Configure</div></nav>
+    <div style="position:absolute;left:0;right:0;top:130px;text-align:center">
+      <div class="small" style="color:#e2231a">Model V · 620 km range</div>
+      <h1 style="font-family:'Syne';font-weight:700;font-size:118px;letter-spacing:-.04em;line-height:1;margin-top:14px">Quiet is the new fast.</h1>
+    </div>
+    <div style="position:absolute;left:0;right:0;bottom:0;height:260px;background:linear-gradient(#e9e9e6,#dcdcd8)"></div>
+    <svg style="position:absolute;left:50%;bottom:120px;transform:translateX(-50%)" width="1060" height="330" viewBox="0 0 1060 330">
+      <ellipse cx="530" cy="300" rx="480" ry="22" fill="#0003"/>
+      <path d="M60 250 Q60 200 120 190 L300 170 Q380 90 520 80 L700 85 Q800 95 880 170 L960 185 Q1010 195 1010 240 L1010 262 L60 262 Z" fill="#e2231a"/>
+      <path d="M330 168 Q400 105 520 98 L680 102 Q760 110 820 168 Z" fill="#1d1d1f"/>
+      <rect x="560" y="100" width="10" height="68" fill="#e2231a"/>
+      <circle cx="250" cy="262" r="62" fill="#111"/><circle cx="250" cy="262" r="34" fill="#9a9a9a"/>
+      <circle cx="820" cy="262" r="62" fill="#111"/><circle cx="820" cy="262" r="34" fill="#9a9a9a"/>
+      <rect x="950" y="200" width="50" height="10" rx="5" fill="#fff3"/>
+    </svg>
+    <div style="position:absolute;left:64px;bottom:50px;display:flex;gap:70px">${['3.4 s|0–100 km/h','620 km|WLTP range','18 min|10–80% charge'].map(r=>{const[a,b]=r.split('|');return `<div><div style="font-family:'Syne';font-weight:700;font-size:34px">${a}</div><div style="font-size:14px;color:#666">${b}</div></div>`}).join('')}</div>
+    <div class="btn" style="position:absolute;right:64px;bottom:60px;background:#e2231a;color:#fff">Reserve yours →</div>
+  </div>`,
+
+  /* 12. Headphones — black, orange, big product */
+  hush: () => `
+  <div class="page" style="background:#121212;color:#f3efe9">
+    <nav><div style="font-family:'Archivo Black';font-size:26px">hush.</div>
+      <div class="links" style="opacity:.8"><span>Headphones</span><span>Earbuds</span><span>Speakers</span><span>Support</span></div><span>Cart</span></nav>
+    <div style="position:absolute;right:-120px;top:60px;width:820px;height:820px;border-radius:50%;background:#ff6a1a"></div>
+    <svg style="position:absolute;right:120px;top:150px" width="560" height="600" viewBox="0 0 560 600" fill="none">
+      <path d="M100 330 Q100 60 280 60 Q460 60 460 330" stroke="#121212" stroke-width="44" stroke-linecap="round"/>
+      <path d="M100 330 Q100 90 280 90 Q460 90 460 330" stroke="#2b2b2b" stroke-width="10"/>
+      <rect x="40" y="290" width="130" height="230" rx="60" fill="#121212"/><rect x="390" y="290" width="130" height="230" rx="60" fill="#121212"/>
+      <rect x="60" y="315" width="90" height="180" rx="44" fill="#2a2a2a"/><rect x="410" y="315" width="90" height="180" rx="44" fill="#2a2a2a"/>
+      <circle cx="455" cy="405" r="10" fill="#ff6a1a"/>
+    </svg>
+    <div style="position:absolute;left:64px;top:220px;width:560px">
+      <div class="small" style="color:#ff6a1a">Hush One · Noise cancelling</div>
+      <h1 style="font-family:'Archivo Black';font-size:118px;line-height:.9;letter-spacing:-.03em;margin-top:20px">Turn the world down.</h1>
+      <p style="font-size:19px;line-height:1.55;margin-top:26px;color:#b6b0a8;max-width:440px">Forty hours of battery, adaptive quiet and a sound you can set by ear.</p>
+      <div style="display:flex;gap:14px;margin-top:36px;align-items:center"><div class="btn" style="background:#ff6a1a;color:#121212">Buy · $299</div><span style="font-size:15px;color:#b6b0a8">or $25/mo</span></div>
+    </div>
+  </div>`,
+};
+
+const id = new URLSearchParams(location.search).get('site') || 'velvetine';
+document.getElementById('root').innerHTML = (SITES[id] || SITES.velvetine)();
+document.fonts.ready.then(() => document.body.setAttribute('data-ready', '1'));
+window.__SITES = Object.keys(SITES);
+</script>
+</body>
+</html>

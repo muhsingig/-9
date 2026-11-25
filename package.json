@@ -1,0 +1,21 @@
+{
+  "name": "card-wall-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs . 5240",
+    "cards": "node scripts/build-atlas.mjs",
+    "shoot": "node scripts/shoot.mjs",
+    "mocks": "node scripts/shoot.mjs --mocks",
+    "vendor": "node -e \"const f=require('fs');for(const d of ['vendor/jsm/loaders','vendor/jsm/utils'])f.mkdirSync(d,{recursive:true});f.copyFileSync('node_modules/three/build/three.module.min.js','vendor/three.module.min.js');f.copyFileSync('node_modules/lenis/dist/lenis.mjs','vendor/lenis.mjs');f.copyFileSync('node_modules/three/examples/jsm/loaders/GLTFLoader.js','vendor/jsm/loaders/GLTFLoader.js');f.copyFileSync('node_modules/three/examples/jsm/utils/BufferGeometryUtils.js','vendor/jsm/utils/BufferGeometryUtils.js')\"",
+    "portrait": "node scripts/shoot.mjs --wait=6000 _portrait=http://localhost:5240/scripts/portrait.html && node -e \"require('sharp')('raw-shots/_portrait.png').extract({left:0,top:0,width:720,height:900}).webp({quality:88}).toFile('assets/portrait.webp').then(()=>require('fs').unlinkSync('raw-shots/_portrait.png'))\""
+  },
+  "dependencies": {
+    "lenis": "1.1.13",
+    "three": "0.169.0"
+  },
+  "devDependencies": {
+    "sharp": "0.33.5"
+  }
+}
